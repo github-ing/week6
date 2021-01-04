@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+       <title>Week 6</title>
+  </head>
+  <body>
+      <h1>DOM Manipulation</h1>
+      <!-- 1) Calculation, 2) Dynamic Data, 3) Animation ,
+
+        DOM Manipulation (showing the value on your UI)
+
+        1) Imagine your RP exercise1
+
+        2) Instead of showing the result in the alert, you would show it in the UI
+
+      -->
+      <input type="text" id="name" placeholder="Enter your name!">
+      <button onclick="sayHello()">Click me!</button>
+      <p id="greetings"></p>
+      
+      <hr>
+
+      <button onclick="clickMeAgain()" id="firstbtn">Disable button</button><button id="secondbtn">Try to click me!</button>
+
+      <hr>
+
+      <h2>My to do list</h2>
+      <input type="text" id="itemname" placeholder="Add new Item" />
+      <button onclick="addNewItem()">Add a new Item</button>
+      <ul id="item-list">
+        
+      </ul>
+      <script type="text/javascript">
+
+        function addNewItem(){
+           var newItem = document.getElementById("itemname").value;
+           var newLi = document.createElement("li");
+           newLi.innerHTML = newItem;
+           var newButton = document.createElement("button");
+           newButton.innerHTML = "Delete Me!"
+           // Adding an onclick element dynamically
+           newButton.addEventListener("click", function(){
+            // remove the Li from the item-list ....
+            document.getElementById("item-list").removeChild(newLi);
+           }
+            )
+           newLi.appendChild(newButton);
+           document.getElementById("item-list").appendChild(newLi);
+        }
+
+               function sayHello(){
+          // Get the value from input ..
+                    var name = document.getElementById("name").value;
+          
+          // Set the value on a p,span, h1, ..
+          document.getElementById("greetings").innerHTML = "Hello "+name;
+
+          //// Set ""  (empty string) / clear the input
+          document.getElementById("name").value = "";
+        }
+
+        function clickMeAgain(){
+          if (document.getElementById("secondbtn").disabled == true) {
+            document.getElementById("firstbtn").innerHTML = "Disable button";
+            document.getElementById("secondbtn").removeAttribute("disabled");
+          }
+          else {
+            document.getElementById("firstbtn").innerHTML = "Enable button";
+            document.getElementById("secondbtn").setAttribute("disabled", true);
+          }
+          
+
+        }
+
+      </script>
+    </body>
+    </html>
+   
